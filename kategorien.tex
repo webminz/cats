@@ -1,0 +1,72 @@
+\documentclass[a4paper]{scrartcl}
+% Eingabeencoding für deutsche Sonderzeichen
+\usepackage[utf8]{inputenc}
+% Aktivieren von deutscher Silbentrennung
+\usepackage[ngerman]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+
+\usepackage{tikz-cd}
+
+\title{Grundlagen der Kategorientheorie}
+\author{Patrick Stünkel}
+
+\newtheorem{definition}{Definition}
+
+
+\begin{document}
+\maketitle
+Dieses Skript soll dem Leser ein grundlegendes Verständnis der Kategorientheorie vermitteln. Bei der Kategorientheorie handelt es sich um ein Teilgebiet der Mathemetik, welches aus der \emph{Topologie} entstanden ist und versucht allgemeine Konzepte, welche in verschiedenen mathematischen Gebieten auftreten, zu verallgemeinern. Innerhalb dieses Skriptes werden nach und nach verschiedene kategorielle Konzepte vorgestellt. Jeweils direkt im Anschluss werden diese allgemeinen Konzepte in einer konkreten Kategorie vorgestellt. Dabei stammt ein Großteil der Beispiel aus dem Gebiet der universellen Algebra, da diese eine unmittelbare Realisierung in Programmiersprachen finden. 
+\section{Grundlagen}
+Das grundlegende Konzept der Kategorientheorie ist die \emph{Kategorie}:
+\begin{definition}{Kategorie}\\
+Eine Kategorie $\mathcal{C}$ ist ein Quadrupel $ \mathcal{C} = (Ob_c,Mor_c,id,\circ)$. Bestehend aus einer Sammlung von Objekten $Ob_c$, einer Familie von Morphismen $Mor_c = (Mor_{a,b})_{a,b \in Ob_c}$, einer Familie von Identitätsmorphismen $id = (id_{a} \in Mor_{a,a})_{a \in Obj_c}$ und einer Familie von totale Abbildungen $ \circ = (\circ_{c,b,a} : Mor_{b,c} \times Mor_{a,b} \rightarrow Mor_{a,c})$, welche die Komposition darstellen. Dabei gelten die folgenden Axiome:
+\begin{align}
+\forall a,b \in O, m \in M_{a,b} : m_\circ id_a = m = id_b \circ m  \\
+\forall a,b,c,d \in O, m \in Mor_{a,b}, n \in Mor_{b,c}, p \in Mor_{c,d} : p \circ_{d,c,a} (n \circ_{c,b,a} m) = (p \circ_{d,c,b} n) \circ_{a,b,a} m 
+\end{align}
+\end{definition}
+\emph{Notation:} Für die Notation von Kategorien sollen folgende Vereinbarungen getroffen werden. Die Elemente aus $Ob_c$ sollen mit kleinen lateinischen Buchstaben bezeichnet werden, i.e.: $a,b,\dots$. Ein Morphismus $m$ aus $Mor_{a,b}$ soll als Pfeil notiert werden, i.e.: $m : a \rightarrow b$. In diesem Fall wird $a$ als \emph{Domain} und $b$ als \emph{Codomain} von $m$ bezeichnet. Als grafische Notation für Kategorien haben sich Pfeildiagramme durchgesetzt. Betrachten wir als Beispiel folgende Kategorie $\mathcal{C}_1 = (\{a,b,c,d,e\},\{m:a \rightarrow b, n:c \rightarrow b,o:c \rightarrow d,p: b \rightarrow e, id_a: a \rightarrow a, id_b:b \rightarrow b, id_c:c \rightarrow c, id_d:d \rightarrow d, id_e:e \rightarrow e\}, \{id_a: a \rightarrow a, id_b:b \rightarrow b, id_c:c \rightarrow c, id_d:d \rightarrow d, id_e:e \rightarrow e\}, \circ_{C_1})$. Die grafische Notation für $\mathcal{C}_1$ sieht wie folgt aus:\\
+\begin{center}
+\begin{tikzcd}
+a \arrow{r}{m} & b \arrow{r}{p} & e\\
+c \arrow{ru}{n} \arrow{r}{o} & d & \\ 
+\end{tikzcd}
+\end{center}
+
+
+
+
+  
+\subsection{Beispielkategorie: Mengen und Abbildungen}
+TODO
+\subsection{Beispielkategorie: partielle Ordnungen}
+TODO
+\subsection{Beispielkategorie: partielle Algebren}
+TODO
+
+\section{Vergleich innerhalb von Kategorien}
+Die zentrale Motivation für Kategorientheorie ist der Vergleich von verschiedenen mathematischen Strukturen unter abstrakten Gesichtspunkten. Konkret bedeutet dies, dass wir verschiedene \emph{Objekte} miteinander vergleichen wollen. Die einzige Möglichkeit Objekte in einer Kategorie zu vergleichen besteht darin, sie anhand ihrer \emph{Morphismen} zu vergleichen. Dazu wollen wir im folgenden verschiedene Arten von Morphismen unterscheiden. 
+\begin{definition}{Isomorphismus}\\
+Ein Morphismus $m: a \rightarrow b$ heißt Isomorphismus, gdw. es einen Umkehrmorphismus $m^{-1}: b \rightarrow a$, für den gilt: $m \circ m^{-1} = id_b$ und $m^{-1} \circ m = id_a$. Dies wird durch das folgende kommutative Diagramm noch einmal verdeutlicht. 
+\begin{center}
+\begin{tikzcd}
+a \arrow{rr}{m} \arrow{dd}{id_a!} & & b \arrow{dd}{id_b!} \\
+ & = & \\
+a & & \arrow{ll}{m^{-1}} b \\
+\end{tikzcd}
+\end{center}
+\end{definition}
+Isomorphismen ermöglichen es somit von einzelnen Objekten zu abstrahieren und mehrere Objekte \emph{gleich} zu behandeln. Man spricht in diesem Fall von \emph{"bis auf Isomorphie eindeutig"}. Wir wollen nun die Relation $\approx \subseteq Ob_c \times Ob_c$ einführen, für die gilt: $ \forall a,b \in Ob_c: (a,b) \in \approx gdw. \exists m: a \rightarrow b$ und $m$ ist ein $Isomorphismus$. 
+
+\section{Konstruktionen innerhalb von Kategorien}
+Bisher haben wir gelernt, dass Morphismen nach verschiedenen Eigenschaften klassifiziert werden können. Diese besonderen Morphismen ermöglichen es wiederum verschiedene Objekte in einer Kategorie miteinander vergleichen zu können. Wir wollen nun Konstruktionen einführen, mit denen aus Objekten einer Kategorie neue Objekte erzeugt werden können.
+\begin{definition}{Produkt}\\
+Seien a und b Objekte einer Kategorie. Das Tripel $(a\times b \in Ob_c, p_a: a\times b \rightarrow a, p_b: a\times b \rightarrow b)$ heißt Produkt, gdw. es für jedes Vergleichsobjekt $x$, für das zwei Morphismen $x_1: x \rightarrow a$ und $x_2: x \rightarrow b$ existieren, existiert ein eindeutiger Morphismus $u: x \rightarrow a\times b$ für den gilt: $x_1 = p_a \circ u$ und $x_2 = p_b \circ u$. Dies wird durch das folgende kommutative Diagramm dargestellt.
+\begin{center}
+\begin{tikzcd}
+a &  \arrow{l}{p_a} a \times b \arrow{r}{p_b}  & b \\
+ &  \arrow{lu}{x_1} x \arrow{ru}{x_2} \arrow{u}{u!} &  \\
+\end{tikzcd}
+\end{center}
+\end{definition}
+\end{document}
