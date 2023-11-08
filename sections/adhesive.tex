@@ -1,0 +1,48 @@
+
+\begin{mydef}[Adhesive Category]
+	A category $\cat{C}$ is called \emph{adhesive} iff.
+	\begin{itemize}
+		\item It has all pullbacks.
+		\item It has pushouts along monomorphism which are \emph{vanKampen (VK)} squares.
+	\end{itemize}
+	A pushout square $D \overset{f}{\leftarrow} A \overset{a}{\leftarrow} C \overset{b}{\to} B \overset{g}{\to} D$ is a \emph{VK}-square iff. for every cube where (1.) is at the bottom and the back faces are given by pullbacks the top face is a pushout iff. the front faces are pullbacks.
+	\[
+	% Van Kampen square
+	\xymatrix{
+		& &&  & C' \ar[dr]^(0.3){b'} \ar[dl]_(0.3){a'} \ar[d]^{r} &  \\ 
+		C \ar[d]_{a} \ar[r]^{b} \ar@{}[dr]|{(1.)}& B \ar[d]^{g} && A' \ar[d]_{p} \ar[dr]_(0.7){f'} & C \ar[dl]|{\hole}_(0.3){a} \ar[dr]|{\hole}^(0.3){b} & B' \ar[dl]^(0.7){g'}  \ar[d]^{q}\\ 
+		A \ar[r]_{f} & D && A \ar[dr]_(0.6){f} & D' \ar[d]_{s} & B \ar[dl]^(0.6){g} \\
+		&  && & D &
+	}
+	\]
+\end{mydef}
+
+
+\begin{mydef}[Adhesive HLR category]
+	A category $\cat{C}$ is called \emph{adhesive HLR} iff. for $\mathcal{M}$ being a class of monorphisms in $\cat{C}$ that is closed under isomorphisms, composition and decomposition.
+	\begin{itemize}
+		\item $\cat{C}$ has pullbacks and pushouts along $\mathcal{M}$-morphisms.
+		\item Pushouts along $\mathcal{M}$-morphisms are \emph{van Kampen} squares.
+	\end{itemize}
+\end{mydef}
+
+\begin{myprop}[Pushouts along $\mathcal{M}$ are pullback squares]
+...
+\end{myprop}
+\begin{proof}
+Also given in \cite[Lemma 4]{LackSobocinski2004}.
+\end{proof}
+
+\begin{myprop}[Pushouts complements of $\mathcal{M}$-morphisms are unique up to isomorphism if they exist]
+	...
+\end{myprop}
+\begin{proof}
+	Also given in \cite[Lemma 15]{LackSobocinski2004}.
+\end{proof}
+
+\begin{myprop}[Pushouts-pullback decomposition]
+	...
+\end{myprop}
+\begin{proof}
+	Also given in \cite[Lemma 16]{LackSobocinski2004}.
+\end{proof}

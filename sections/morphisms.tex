@@ -1,0 +1,209 @@
+
+\subsection{Isomorphisms}
+
+\mkDefinition{Isomorphisms}{def:isos}{
+	A morphism $\arrow{A}{f}{B}$ is called an \emph{isomorphism} if there exists a morphism $\arrow{B}{g}{A}$ such that 
+	\begin{equation}
+	\label{eq:iso}
+	\tag{Invertability}
+	\compose{f}{g} = \identity{A} \wedge \compose{g}{f} = \identity{B}
+	\end{equation}
+	Two objects $A, A'$ are called \emph{isomorphic}, denoted $A \isomorphic A'$, if there exists an isomorphism $\arrow{A}{i}{A'}$.
+}
+
+\mkProposition{Identities are Isomorphisms}{prop:idsAsIsos}{
+Every identity $\arrow{A}{\identity{A}}{A}$ is an isomorphisms.
+}
+\begin{proof}
+	Define $\inverse{\identity{A}} := \identity{A}$.
+	Evidently, \ref{eq:section} and \ref{eq:section} are immediately fulfilled because of the \ref{eq:neutrality}.
+\end{proof}
+
+
+\mkDefinition{Sections and Retractions}{def:sectionsRetractions}{
+Let $\arrow{A}{f}{B}$ be an arrow 
+\begin{itemize}
+\item A \emph{section} for $f$ is a morphism $\arrow{B}{s}{A}$ such that: 
+\begin{equation}
+\tag{Section}
+\label{eq:section}
+\compose{s}{f}  = id_B
+\end{equation}
+\item A \emph{retraction} for $f$ is a morphism $\arrow{B}{r}{A}$ such that
+\begin{equation}
+\tag{Retraction}
+\label{eq:retraction}
+\compose{f}{r} = id_A
+\end{equation}
+\end{itemize}
+}
+
+
+\mkProposition{Isomorphisms, Sections and Retractions compose}{prop:isoComposition}{
+If $\arrow{A}{f}{B}$ is an isomorphism and $\arrow{B}{g}{C}$ is an isomorphism too, then their compositions $g \circ f$ is an isomorphism too. Likewise for sections and retractions.
+}
+\begin{proof}
+\begin{equation}
+\label{diag:isoComposition}
+\xymatrix{
+A \ar@/^/[r]^f & B \ar@/^/[r]^g \ar@{-->}@/^/[l]^{f^{-1}} & C  \ar@{-->}@/^/[l]^{g^{-1}}
+}
+\end{equation}
+Assume $f$ and $g$ are sections, then there are morphisms $\arrow{B}{\inverse{f}}{A}$ and $\arrow{C}{\inverse{g}}{B}$ (LI-f), depicted in diagram~\ref{diag:isoComposition} such that $\compose{f}{\inverse{f}} = id_A$ and $\compose{g}{\inverse{g}} = id_B$ (LI-g), cf. \ref{eq:section}. 
+In deed, $\inverse{(\compose{f}{g})} := \compose{\inverse{g}}{\inverse{f}}$ is left inverse of $\compose{f}{g}$ because
+\begin{align*}
+\compose{(\compose{f}{g})}{(\compose{\inverse{g}}{\inverse{f}})}  & \\
+\proofStep{\ref{eq:associativity}} & = \compose{\compose{f}{(\compose{g}{\inverse{g}})}}{\inverse{f}}\\ 
+\proofStep{LI-g}  & =   \compose{\compose{f}{\identity{B}}}{\inverse{f}} \\ 
+\proofStep{\ref{eq:neutrality}} & =  \compose{f}{\inverse{f}} \\ 
+\proofStep{LI-f} & = \identity{A}
+\end{align*}
+Likewise, assuming $f$ and $g$ to be retractions, there exist morphisms $\arrow{B}{\inverse{f}}{A}$ and $\arrow{C}{\inverse{g}}{B}$, such that $\compose{\inverse{f}}{f} = \identity{B}$ (RI-f) and $\compose{\inverse{g}}{g} = \identity{C}$ (RI-g), cf. \ref{eq:retraction} and we dually get
+\begin{align*}
+\compose{(\compose{\inverse{g}}{\inverse{f}})}{(\compose{f}{g})} & \\
+\proofStep{\ref{eq:associativity}}	& = \compose{\inverse{g}}{\compose{(\compose{\inverse{f}}{f})}{f}} \\ 
+\proofStep{RI-f} & =  \compose{\inverse{g}}{\compose{\identity{B}}{g}} \\ 
+\proofStep{\ref{eq:neutrality}} \rangle & =  \compose{\inverse{g}}{g}  \\ 
+\langle \mbox{RI-g} \rangle& = \identity{C}
+\end{align*}
+Both statements together conclude the proof for composition of isomorphisms.
+\end{proof}
+
+\mkProposition{Inverses are unique}{prop:uniqueInverse}{
+When $\arrow{A}{f}{G}$ is an isomorphism its inverse is determined \emph{uniquely}.
+}
+\begin{proof}
+Let $\arrow{A}{f}{B}$ be a morphism and $\arrow{B}{g,h}{A}$ morphism for which \ref{eq:section} and \ref{eq:retraction} holds, i.e. $\compose{f}{g} = \identity{A}$ (i), $\compose{f}{h} = \identity{A}$ (ii), $\compose{g}{f} = \identity{B}$ (iii) and $\compose{h}{f} = \identity{B}$ (iv).
+Thus
+\begin{align*}
+	g & \\
+	\proofStep{\ref{eq:neutrality}} & = \compose{g}{\identity{A}}\\
+	 \proofStep{(ii)} & = \compose{g}{(\compose{f}{h})}  \\
+	 \proofStep{\ref{eq:associativity}} & = \compose{(\compose{g}{f})}{h} \\
+	 \proofStep{(ii)} & = \compose{\identity{B}}{h} \\
+	 \proofStep{\ref{eq:neutrality}} & = h
+\end{align*} 
+\end{proof}
+This justifies the notion $\inverse{f}$ that is both a left and right inverse for a morphism $f$.	
+
+\mkProposition{Inverses are isomorphisms}{prop:inverseIsomorphisms}{
+Let $\arrow{A}{f}{B}$ be an isomorphism than the morphism $\arrow{B}{\inverse{f}}{A}$ that satisfies both \ref{eq:section} and \ref{eq:retraction} is an isomorphism too.
+}
+\begin{proof}
+We define the inverse of $\inverse{f}$ as $\inverse{(\inverse{f})} := f$.
+This evidently fulfills the requirement since $f$ is an isomorphism.
+\end{proof}
+
+\mkProposition{Isomorphism Equivalence Relation}{prop:isoEqui}{
+The \emph{isomorphism} relation $\isomorphic \subseteq \catObjects{\cat{C}} \times \catObjects{\cat{C}}$ over objects in a category $\cat{C}$ is an equivalence relation.
+}
+\begin{proof}
+For $A, B, C \in \catObjects{\cat{C}}$, \emph{reflexivity} $A \isomorphic A$ follows from Prop.~\ref{prop:idsAsIsos}, \emph{symmetry} $A \isomorphic B \Rightarrow B \isomorphic A$ follows from Prop.~\ref{prop:inverseIsomorphisms}, and \emph{transitivity} $A \isomorphic B \wedge B \isomorphic C \Rightarrow A \isomorphic C$ follows from Prop.~\ref{prop:isoComposition}.
+\end{proof}
+
+\mkDefinition{Determination and Choice}{def:determinationChoice}{
+	\ \par
+\begin{enumerate}
+\item Given two arrows $\arrow{A}{f}{B}$ and $\arrow{A}{h}{C}$, finding an arrow $\arrow{B}{g}{C}$ such that $\compose{f}{g} = h$ is called the \emph{determination} or \emph{extension} problem.
+\begin{equation}
+\label{eq:determination}
+\tag{Determination}
+\xymatrix{
+ & B \ar@{-->}[dr]^{g?} & \\
+ A \ar[ur]^{f} \ar[rr]_{h} & & C
+}
+\end{equation}
+\item Given two arrows $\arrow{B}{g}{C}$ and $\arrow{A}{h}{C}$, finding an arrow $\arrow{A}{f}{B}$ such that $\compose{f}{g} = h$ is called the \emph{choice} or \emph{lifting} problem.
+\begin{equation}
+\label{eq:choice}
+\tag{Choice}
+\xymatrix{
+	& B \ar[dr]^g & \\
+	A \ar@{-->}[ur]^{f?} \ar[rr]_{h} & & C
+}
+\end{equation}
+\end{enumerate}
+}
+
+\mkProposition{Sections as Choice Problem}{prop:sectionsAsChoices}{
+If for an arrow $\arrow{A}{f}{B}$, the choice problem has a solution for every $C$ and $\arrow{C}{h}{B}$, then $f$ has a section.
+}
+\begin{proof}
+The section $\arrow{B}{s}{A}$ is given as the solution of the following choice problem
+\begin{equation}
+\xymatrix{
+ & A \ar[dr]^f & \\
+B \ar[rr]_{\identity{B}} \ar@{-->}[ur]^{s} & & B 
+}
+\end{equation}
+\end{proof}
+
+\mkProposition{Sections solve Choice Problem}{prop:sectionSolvesChoices}{
+If an arrow $\arrow{A}{f}{B}$ has a section, then for any object $C$ and arrow $\arrow{C}{h}{B}$ than the choice problem has a solution, i.e. there exists an arrow $\arrow{C}{g}{A}$ such that $\compose{g}{g} = h$.
+}
+% TODO proof
+
+
+\begin{myprop}[Section decomposition]
+If $f;g$ is a section, then $f$ is a section as well.
+\end{myprop}
+
+\begin{myprop}[Retraction decomposition]
+	If $f;g$ is a retraction, then $g$ is a retraction as well.
+\end{myprop}
+
+\begin{myfact}[Sections in $\catSET$]
+Sections in $\catSET$ is exactly the class of \emph{injective} mappings.
+\end{myfact}
+
+
+% TODO determinism and choice problems.
+
+\subsection{Monomorphisms}
+
+
+\begin{mydef}{Monomorphism}
+A morphism $\arrow{B}{m}{C}$ is called  \emph{monic} or a \emph{monomorphism} iff. $\forall \arrow{A}{f,g}{B}$ the following implication holds $m \circ f = m \circ g \implies f = g$.
+A monomorphism $m$ is called
+\begin{description}
+\item[regular] iff it is an equalizer of a diagram.
+\item[extremal] iff for every factorization $m = f \circ e$ where $e$ is epic, $e$ must be an isomorphism.
+\end{description}
+\end{mydef}
+
+\begin{myprop}[Monic decomposition]
+	If $f;g$ is monic, then $f$ is monic as well.
+\end{myprop}
+
+\begin{myprop}[Monic composition]
+	If $f;$  and $g$ are monic, then $f;g$ is monic as well.
+\end{myprop}
+
+\begin{myprop}[Sections are monic]
+Every section $f$ is a monomorphism.
+\end{myprop}
+
+\begin{myprop}[Monic retractions are isomorphisms]
+If $f$ is a monomorphism and a retraction, the $f$ is an isomorphism.
+\end{myprop}
+
+\begin{myfact}[Retractions in $\catSET$]
+	Sections in $\catSET$ is exactly the class of \emph{surjective} mappings.
+\end{myfact}
+
+\begin{myfact}[Isomorphisms in $\catSET$]
+	Isomorphisms in $\catSET$ is exactly the class of \emph{bijective} mappings.
+\end{myfact}
+
+\begin{myfact}[Monomorphisms and Epimorphisms $\catINCL$]
+	All morphisms in $\catINCL$ are monomorphisms and epimorphisms.
+\end{myfact}
+
+\begin{myfact}[Monomorphisms in $\catPAR$]
+	A morphism $f: A \rightharpoonup B$ is a monomorphism iff it is total and injective.
+\end{myfact}
+
+\begin{myfact}[Monomorphisms in $\catPAR$]
+	A morphism $f: A \rightharpoonup B$ is a monomorphism iff it is surjective.
+\end{myfact}
+

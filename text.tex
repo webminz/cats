@@ -1,0 +1,274 @@
+% easychair.tex,v 3.5 2017/03/15
+
+\documentclass{easychair}
+%\documentclass[EPiC]{easychair}
+%\documentclass[EPiCempty]{easychair}
+%\documentclass[debug]{easychair}
+%\documentclass[verbose]{easychair}
+%\documentclass[notimes]{easychair}
+%\documentclass[withtimes]{easychair}
+%\documentclass[a4paper]{easychair}
+%\documentclass[letterpaper]{easychair}
+
+ 
+\input{../../git/common/preamble}
+\input{../../git/common/math}
+\input{../../git/common/tikzlibrary}
+\input{../../git/common/lstlistinglibrary}
+\usepackage{tikzit}
+\input{../../git/common/drawing.tikzstyles}
+
+% The categories we are dealing with
+\newcommand{\catSET}{\mathbb{S}\mathbbm{et}}
+\newcommand{\catINCL}{\mathbb{I}\mathbbm{ncl}}
+\newcommand{\catCAT}{\mathbb{C}\mathbbm{at}}
+\newcommand{\catPAR}{\mathbb{P}\mathbbm{ar}}
+\newcommand{\catREL}{\mathbb{R}\mathbbm{el}}
+\newcommand{\catSEN}{\mathbb{S}\mathbbm{en}}
+\newcommand{\catMULT}{\mathbb{M}\mathbbm{ult}}
+\newcommand{\catMON}{\mathbb{M}\mathbbm{on}}
+\newcommand{\catGRAPH}{\mathbb{G}\mathbbm{raph}}
+\newcommand{\catSIMPLEGRAPH}{\mathbb{SG}\mathbbm{raph}}
+\newcommand{\catHYPERGRAPH}{\mathbb{H}\mathbbm{yp}}
+\newcommand{\catALGOMEGA}{\mathbb{A}\mathbbm{lg}(\Omega)}
+\newcommand{\catALGSIGMA}{\mathbb{A}\mathbbm{lg}(\Sigma)}
+\newcommand{\catSYSSIGMA}{\mathbb{S}\mathbbm{ys}(\Sigma)}
+\newcommand{\catExplanation}[4]{
+\begin{description}[leftmargin=\parindent,labelindent=\parindent,itemsep=2pt,parsep=2pt]
+\item[Objects] {#1}
+\item[Morphisms] {#2}
+\item[Composition] {#3}
+\item[Identities] {#4}
+\end{description}
+}
+%% Front Matter
+%%
+% Regular title as in the article class.
+%
+\title{Category Theory Compendium}
+
+
+% Authors are joined by \and. Their affiliations are given by \inst, which indexes
+% into the list defined using \institute
+%
+\author{
+	Patrick Stünkel\inst{1}%\thanks{Designed and implemented the class style}
+%	\and
+%	Somebody else\inst{2}%\thanks{Did numerous tests and provided a lot of suggestions}
+}
+
+% Institutes for affiliations are also joined by \and,
+\institute{
+	Western Norway University of Applied Sciences,
+	Bergen, Norway\\
+	\email{past@hvl.no}
+%	\and
+%	Other University,
+%	Other, Country\\
+%	\email{other@university.edu}\\
+}
+
+%  \authorrunning{} has to be set for the shorter version of the authors' names;
+% otherwise a warning will be rendered in the running heads. When processed by
+% EasyChair, this command is mandatory: a document without \authorrunning
+% will be rejected by EasyChair
+
+\authorrunning{P. Stünkel}
+
+% \titlerunning{} has to be set to either the main title or its shorter
+% version for the running heads. When processed by
+% EasyChair, this command is mandatory: a document without \titlerunning
+% will be rejected by EasyChair
+\titlerunning{Category Theory Compendium}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+All the proofs I know
+\end{abstract}
+
+
+% The table of contents below is added for your convenience. Please do not use
+% the table of contents if you are preparing your paper for publication in the
+% EPiC Series or Kalpa Publications series
+
+
+%\section{To mention}
+%
+%Processing in EasyChair - number of pages.
+%
+%Examples of how EasyChair processes papers. Caveats (replacement of EC
+%class, errors).
+
+%------------------------------------------------------------------------------
+\section{Categories}
+\label{sec:introduction}
+
+\input{section/foundatios}
+
+\section{Morphisms}
+\label{sec:morphisms}
+
+\input{sections/morphisms}
+
+
+\section{Factorization Systems}
+\label{sec:factorizationSystems}
+\input{sections/factorization}
+
+\section{Functors}
+\label{sec:functors}
+
+\input{sections/functors}
+
+
+
+
+
+
+\section{Universal Constructions}
+\label{sec:universalConstructions}
+
+\input{sections/universal}
+
+
+\section{Adjunctions}
+\label{sec:adjunctions}
+
+\input{sections/adjunctions}
+
+\section{Algebras and Monads}
+\label{sec:algebras}
+
+\input{sections/algebras}
+
+\section{Partial Arrows and Span Categories}
+\label{sec:spans}
+
+\input{sections/spans}
+
+
+\section{Constructions}
+\label{sec:constructions}
+
+\input{sections/constructions}
+
+\section{Toposes}
+\label{sec:topoi}
+
+\input{sections/topoi}
+
+\section{Fibered Category Theory}
+\label{sec:fibrations}
+
+% TODO Def SLICE and CO-SLICE and ARROW category
+
+\mkDefinition{Fibre Category}{def:fibre}{
+Let $\cat{E}$ and $\cat{B}$ be two categories and $\arrow{\cat{E}}{P}{\cat{B}}$ be a functor.
+For any object $I \in \catObjects{\cat{B}}$ we define the fibre $\cat{E}_I = \inverse{P}(I)$ over $I$ to be a category, which has 
+\catExplanation{All objects $X \in \catObjects{\cat{E}}$ for which $P(X) = I$.}
+{All morphisms $\arrow{X}{f}{Y}$ for which $P(f) = \identity{I}$.}
+{Retained from composition in $\cat{E}$.}
+{Retained from identities in $\cat{E}$.}
+}
+
+\mkDefinition{Cartesian and Opcartesian Morphisms}{def:cartesian}{
+Let $\cat{E}$ and $\cat{B}$ be two categories and $\arrow{\cat{E}}{P}{\cat{B}}$ be a functor.
+\begin{enumerate}
+\item An arrow $\arrow{X}{f}{Y}$ with $P(X) = \arrow{I}{u}{J}$ is called \emph{cartesian} over $u$ iff. for any arrow $\arrow{Z}{g}{Y}$ where there exist $\arrow{P(Z)}{w}{I}$ with $\compose{w}{u} = P(g)$ there exists a unique $\arrow{Z}{h}{X}$ such that $\compose{h}{f} = g$ and $P(h) = w$.
+\begin{equation}
+\label{eq:cartesian}
+\tag{Cartesian Arrow}
+\xymatrix @C= 5em {
+\cat{E} \ar[ddd]_{P}  & \textcolor{blue}{Z} \ar@[blue][dr]_{\textcolor{blue}{g}} \ar@[red]@{-->}[r]^{\textcolor{red}{h!}} & X \ar[d]^f \\
+  & & Y \\
+  &  \textcolor{blue}{P(Z)} \ar@[blue][r]^{\textcolor{blue}{w}\textcolor{red}{= P(h)}} \ar@[blue][dr]_{\textcolor{blue}{P(g)}} & I  \ar[d]^u \\
+\cat{B} & & J
+}
+\end{equation}
+\item  An arrow $\arrow{X}{f}{Y}$ with $P(X) = \arrow{I}{u}{J}$ is called \emph{cartesian} over $u$ iff. for any arrow $\arrow{Z}{g}{Y}$ iff. for any arrow $\arrow{X}{g}{Z}$ where there exists $\arrow{J}{w}{P(Z)}$ with $\compose{u}{w} = P(g)$ there exists a unique $\arrow{X}{h}{Z}$ such that $\compose{f}{g} = h$ and $P(h) = w$.
+\begin{equation}
+\label{eq:opcartesian}
+\tag{Opcartesian Arrow}
+\xymatrix @C= 5em {
+	\cat{E} \ar[ddd]_{P}  & X \ar[d]^f \ar@[blue][r]^{\textcolor{blue}{g}} &  \textcolor{blue}{Z}  \\ 
+	& Y \ar@[red]@{-->}[ur]_{\textcolor{red}{h!}} &  \\
+	&  I  \ar[d]_u  \ar@[blue][r]^{\textcolor{blue}{P(g)}} & \textcolor{blue}{P(Z)}    \\
+	\cat{B} & J \ar@[blue][ur]_{\textcolor{blue}{w}\textcolor{red}{= P(h)}} & 
+}
+\end{equation}
+\end{enumerate}
+A (op)cartesian arrow $f$ is called \emph{weakly (op-)cartesian} if the above conditions only hold for $g$'s being identities $\identity{X}$.
+}
+
+\mkProposition{Cartesian Liftings are unique up to isomorphisms}{prop:cartesianLiftingsAbstract}{
+Let $\cat{E}$ and $\cat{B}$ be two categories and $\arrow{\cat{E}}{P}{\cat{B}}$ be a functor.
+When $\arrow{X}{f}{Y}$ and $\arrow{X'}{f'}{Y'}$ are cartesian over the same map $\arrow{I}{u}{J} \in \catArrows{\cat{B}}$ then there exists a unique isomorphism $\arrow{X}{\isomorphic}{X'}$.
+}
+
+\mkDefinition{Fibrations and Opfibrations}{def:fibrations}{
+A functor $\arrow{\cat{E}}{P}{\cat{B}}$ is called a \emph{fibration} iff. for every $Y \in \catObjects{\cat{E}}$ and $\arrow{I}{u}{P(Y)} \in \catArrows{\cat{B}}$ there exists a cartesian arrow $\arrow{X}{f}{Y}$ such that $P(f) = u$.\par
+Dually, $P$ is called an \emph{opfibration} iff. for every $X \in \catObjects{E}$ and $\arrow{P(X)}{u}{J} \in \catArrows{\cat{B}}$ there exists a an opcartesian arrow $\arrow{X}{f}{Y}$ such that $P(f) = u$.
+}
+
+\mkProposition{Codomain Fibrations}{prop:codomainFibration}{
+Let $\cat{C}$ be a category and $\arrow{\catArrows{\cat{C}}}{cod}{\cat{C}}$ be the codomain functor.
+\begin{enumerate}
+\item The fibre category $\cat{C}_I$ over $I \in \catObjects{\cat{C}}$ is equal to the slice category $\sliceCat{\cat{C}}{I}$.
+\item Cartesian morphisms in $\catArrows{\cat{C}}$ are exactly the pullback squares in $\cat{C}$.
+\item The functor $cod$ is fibration if and only if $\cat{C}$ has pullbacks. 
+\end{enumerate}
+}
+
+\mkTheorem{Grothendieck Construction}{thm:grothendieck}{
+Let $\cat{E}$ and $\cat{B}$ be two categories and $\arrow{\cat{E}}{P}{\cat{B}}$ be a functor.
+For any object $B \in \catObjects{\cat{B}}$ there is an equivalence of 2-categories
+\begin{equation}
+	\mathbf{Fib}(B) \cong \left[\dual{B}, \catCAT \right]
+\end{equation}
+The functor going from right to left in this equivalence if called. the \emph{Grothendieck construction} (The reconstruction of a fibration from a pseudofunctor) and is denoted
+\begin{equation}
+ \int : \left[\dual{B}, \catCAT \right] \to \sliceCat{\catCAT}{B}
+\end{equation}
+}
+
+
+
+\section{Adhesive Categories}
+\label{sec:adhesive}
+
+\input{sections/adhesive}
+
+\section{Internal Category Theory}
+\label{sec:internalCT}
+
+% TODO working internal to a category with pullbacks
+
+\section{Regular Categories and Allegories}
+\label{sec:allegories}
+
+\section{Higher Order Category Theory}
+\label{sec:HO}
+
+% TODO notion of enriched
+
+
+\label{sect:bib}
+\bibliographystyle{plain}
+%\bibliographystyle{alpha}
+%\bibliographystyle{unsrt}
+%\bibliographystyle{abbrv}
+\bibliography{../../git/literature/library}
+
+%------------------------------------------------------------------------------
+
+
+%------------------------------------------------------------------------------
+% Index
+%\printindex
+
+%------------------------------------------------------------------------------
+\end{document}
+

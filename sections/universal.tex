@@ -1,0 +1,181 @@
+
+\subsection{Terminal and Initial Objects}
+Final and initial objects are defined over an \emph{empty} diagram, i.e. they relate uniquely to \emph{all} objects in the category.
+
+
+\begin{mydef}[Final and Initial objetc]
+	An object $1 \in \cat{C}$ is said to be \emph{final} iff. for all $X \in \cat{C}$ there exists a unique morphism $\arrow{X}{1_X}{1}$.
+	Dually, an object $0 \in \cat{C}$ is said to be \emph{initial} iff for all $X \in \cat{C}$ there exists a unique morphism $\arrow{0}{0_X}{C}$.
+	\[
+	\xymatrix{
+		X \ar@{.>}[d]^{1_X} & & 0 \ar@{.>}[d]^{0_X}  \\
+		1  & & X
+	}
+	\]
+\end{mydef}
+
+\begin{myprop}[Final object in $\catSET$]
+	A final object in $\catSET$ is a one-element set $1 = \{\bullet\}$.
+\end{myprop}
+
+\begin{myprop}[Initial object in $\catSET$]
+	The initial object in $\catSET$ is the empty set $0 = \emptyset$.
+\end{myprop}
+
+\begin{myprop}[Initial object in $\catINCL$]
+	The initial object in $\catINCL$ is the empty set $0 = \emptyset$.
+\end{myprop}
+
+\begin{myprop}[Initial object in $\catINCL$]
+	There is not terminal object in $\catINCL$.
+\end{myprop}
+
+\begin{myprop}[Initial object in $\catPAR$]
+	The terminal object in $\catPAR$ is the empty set $1 = \emptyset$.
+\end{myprop}
+
+\begin{myprop}[Initial object in $\catREL$]
+	The terminal object in $\catREL$ is the empty set $0 = \emptyset$.
+\end{myprop}
+
+
+
+\subsection{Products and Coproducts}
+
+\begin{mydef}[Products and Coproducts]
+	Let $\cat{C}$ be a category and $A, B \in \cat{C}$ be objects.
+	A binary \emph{product} of $A$ and $B$ written $A \times B$ is given by a span $(A\times B, \arrow{A \times B}{\pi_A}{A}, \arrow{A \times B}{\pi_B}{B})$ such that for all spans $(X,\arrow{X}{f}{A},\arrow{X}{g}{B})$ there is a unique morphism $\arrow{X}{(f,g)}{A\times B}$ such that ...
+	\[
+	\xymatrix{
+		& C \ar@/_1pc/@{-->}[ddl]_{f} \ar\ar@/^1pc/@{-->}[ddr]^{g} \ar@{.>}[d]|{\langle f,g\rangle} &  & & & C & \\
+		& A \times B \ar[dl]_{\pi_A} \ar[dr]^{\pi_B} & & &  & A + B \ar@{.>}[u]|{[f,g]} &  \\
+		A & & B & & A \ar[ur]^{\kappa_A} \ar@/^1pc/@{-->}[uur]^{f} & & B \ar[ul]_{\kappa_B} \ar@/_1pc/@{-->}[uul]_{g}
+	}
+	\]
+\end{mydef}
+
+\begin{myprop}[Products are asssociative]
+	$(A \times B) \times C \cong A \times (B \times C)$
+\end{myprop}
+\begin{myprop}[Products are commutative]
+	$A \times B \cong B \times A$
+\end{myprop}
+\begin{myprop}[Products are neutral wrt Final Objects]
+	$A \times 1 \cong A$
+\end{myprop}
+
+\begin{myprop}[Coproducts are asssociative]
+	$(A + B) + C \cong A + (B + C)$
+\end{myprop}
+\begin{myprop}[Coproducts are commutative]
+	$A + B \cong B \times A$
+\end{myprop}
+\begin{myprop}[Coproducts are neutral wrt Initial Objects]
+	$A + 0 \cong A$
+\end{myprop}
+
+\begin{myprop}[Distrbutive Law]
+In every category that has products and coproducts there is a morphism $A \times B + A \times C \to A \times (B + C)$, iff this morphism is an isomorphism, i.e. $A \times B + A \times C \cong A \times (B + C)$, the underlying category is called \emph{distributive}.
+\end{myprop}
+
+\begin{myprop}[Products in $\catSET$]
+	$\catSET$ has all products. 
+	A binary product in $\catSET$ is given by the well-known cartesian product $A \times B := \{ (a,b) \mid a \in A, b \in B\}$ for $A$ and $B$ being sets.
+\end{myprop}
+\begin{myprop}[Products in $\catSET$]
+	$\catSET$ has all coproducts. 
+	A binary coproduct in $\catSET$ is given by the well-known disjoint union $A \uplus B := \{ (i,x) \mid (x \in A \wedge i = 1) \vee (x \in B \wedge i = 2) \}$ for $A$ and $B$ being sets. 
+\end{myprop}
+
+\begin{myprop}[Coproduct in $\catINCL$]
+	The binary coproduct of $A$ and $B$ in $\catINCL$ is given by their union $A \cup B$.
+\end{myprop}
+
+\begin{myprop}[Product in $\catINCL$]
+	The binary product of $A$ and $B$ in $\catINCL$ is given by their intersection $A \cap B$.
+\end{myprop}
+
+\subsection{Equalizers and Coequalizers}
+
+
+\begin{mydef}[Equalizer and Coequalizer]
+	\[
+	\xymatrix{
+		Eq(a,b) \ar[r]^{\pi} & A \ar@<1ex>[r]^{a} \ar@<-1ex>[r]_{b} & B & & A \ar@<1ex>[r]^{a} \ar@<-1ex>[r]_{b} & B \ar[r]^{\kappa} \ar@{-->}[dr]_{c} & Ceq(a,b \ar@{.>}[d]^{u!}) \\
+		C \ar@{-->}[ur]_{c} \ar@{.>}[u]^{u!} & & & & & & C
+	}
+	\]
+\end{mydef}
+
+\subsection{Pullbacks and Pushouts}
+
+
+\begin{mydef}[Pullback and Pushout]\label{def:pullbacksAndPushout}
+	Given a span of morphisms in a category $\cat{C}$.
+
+	\[
+	\xymatrix{
+		D \ar@{-->}@/^1pc/[drr]^{g} \ar@{-->}@/_1pc/[ddr]_{f} \ar@{.>}[dr]|{\langle f,g\rangle} & & & & & & & \\
+		& A \times_{(a,b)} B \ar[r]^{\pi_B} \ar[d]_{\pi_A}  & B \ar[d]^{b} & & C  \ar[r]^{b} \ar[d]_{a} & B \ar[d]^{\kappa_B} \ar@{-->}@/^1pc/[ddr]^{g} & \\
+		& A \ar[r]_{a} & C & & A \ar@{-->}@/_1pc/[drr]_{f} \ar[r]_{\kappa_A} & A +_{(a,b)} B \ar@{.>}[dr]|{[f,g]} & \\
+		& & & & & &  D
+	}
+	\]
+	\end{mydef}
+
+\subsection{General (Co-)Limits}
+
+A diagram can be interpreted as a selection of some of the objects and morphisms in $\cat{C}$.
+A a cone is a distinguished object together with a family of \emph{outgoing} morphisms that commute with all morphisms in the selection (``sitting under'') and a cocone is a distinguished object together with a family of \emph{incoming} morphisms commuting with all morphisms in the selection (``sitting over'').
+The two types of universal construction are limits, i.e. generalized meets (``biggest cone below''), and colimits, i.e. generalized joins (``smallest cocone above''):
+
+\begin{mydef}[Diagram]
+	Let $\cat{C}$ be a category. 
+	A diagram over $\cat{C}$ is given by a small category $\cat{I}_\mathbf{D}$ and functor $\mathbf{D}: \cat{I}_\mathbf{D} \to \cat{C}$.
+\end{mydef}
+
+
+\begin{mydef}[(Co-)Cone]
+	Let $\cat{C}$ be a category and $\mathbf{D}: \cat{I}_\mathbf{D} \to \cat{C}$ be a diagram.
+	For an object $C \in \catObjects{\cat{C}}$ we can define a functor $\Delta_C: \cat{I}_\mathbf{D} \to \cat{C}$ that maps every object $I \in \cat{I}_\mathbf{D}$ to $C$ and every arrow $\arrow{I}{i}{I'} \in \cat{I}_\delta(I,I')$ to $id_C$ for $I, I' \in \catObjects{\cat{I}_\mathbf{D}}$.
+	A \emph{cone} $(C, \pi: \Delta_C \Rrightarrow \delta)$ is an object together with a natural transformation $\pi$, i. the selection induced by $\delta$.
+	A \emph{cocone}$(C, \kappa: \delta \Rrightarrow \Delta_c)$ is the dual notion.
+\end{mydef}
+
+\begin{mydef}[(Co-)Limit]
+	Let $\cat{C}$ be a category and $\mathbf{D}: \cat{I}_\mathbf{D} \to \cat{C}$ be a diagram.
+	
+	A \emph{limit} is a cone $(L, \pi: \Delta_L \Rrightarrow \mathbf{D}$ such that for all cones $(X, \xi: \Delta_X \Rrightarrow \mathbf{D}$ there exists a unique morphism $\arrow{X}{u!}{L}$ such that $\pi_I \circ u! = \xi_I$ for all $I \in \cat{I}_\mathbf{D}$.
+	The natural transformation $\pi$ is called \emph{projections}.
+	
+	A \emph{limit} is a cocone $(C, \kappa: \mathbf{D} \Rrightarrow \Delta_C$ such that for all cocones $(X, \xi: \mathbf{D} \Rrightarrow \Delta_X$ there exists a unique morphism $\arrow{C}{u!}{X}$ such that $u! \circ \kappa_I = \xi_I$ for all $I \in \cat{I}_\mathbf{D}$.
+	The natural transformation $\kappa$ is called \emph{injections}.
+	
+	Both notions are visualized in the diagrams below.
+	\[
+	\xymatrix{
+		& X \ar@{-->}@/_1pc/[ddl]_{\xi_I} \ar@{-->}@/^1pc/[ddr]^{\xi{I'}} \ar@{.>}[d]|{u!} & & &
+		\mathbf{D}(I) \ar@/_0.5pc/[dr]_{\kappa_I} \ar@{-->}@/_1pc/[ddr]_{\xi_I} \ar[rr]^{\mathbf{D}(i)} & & \mathbf{D}(I') \ar@/^0.5pc/[dl]^{\kappa_I} \ar@{-->}@/^1pc/[ddl]^{\xi_I}\\
+		& L \ar@/_0.5pc/[dl]_{\pi_I} \ar@/^0.5pc/[dr]^{\pi_{I'}} & & 
+		& & C \ar@{.>}[d]|{u!} & \\
+		\mathbf{D}(I) \ar[rr]_{\mathbf{D}(i)} & & \mathbf{D}(I') & &
+		& X &
+	}
+	\]
+\end{mydef}
+
+
+\begin{myprop}[(Co-)Limits are abstract]
+	For $\cat{C}$ being a category and $\mathbf{D}: \cat{I}_\mathbf{D} \to \cat{C}$ being a diagram.
+	When $(L, \pi: \Delta_L \Rrightarrow \mathbf{D}$ and $(L', \pi': \Delta_{L'} \Rrightarrow \mathbf{D}$ are two limits then $L$ and $L'$ are isomorphic, written $L \cong L'$, i.e. there exists a pair of morphisms $u: L \to L'$ and $u^{-1}: L' \to L$ such that $u^{-1} \circ u = id_L$ and $u \circ u^{-1} = id_{L'}$.
+	Dually this holds for colimits as well.
+\end{myprop}
+\subsection{Initial Objects}
+
+\subsection{Coproducts}
+
+\subsection{Coqualizers}
+
+\subsection{Pushouts}
+
+\subsection{General Colimits}
