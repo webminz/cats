@@ -1,0 +1,138 @@
+
+\mkDefinition{Category}{def:cat}{
+A category $\cat{C}$ is given by a four tuple $(Ob_\cat{C}, Mor_\cat{C}, \circ^\cat{C}, id^\cat{C})$ comprising
+\begin{itemize}
+\item A class of \emph{objects} $Ob_\cat{C}$.
+\item A family $Mor_\cat{C} = (\homset{\cat{C}}{A}{B})_{A,B \in Ob_\cat{C}}$ of classes indexed over pairs of objects $A, B \in Obj_\cat{C}$. 
+A class $\homset{\cat{C}}{A}{B}$ is called a \emph{hom-set}. 
+A member $f \in \homset{\cat{C}}{A}{B}$ is called a \emph{morphism} or \emph{arrow} and there are functions $dom$ and $codom$ telling its \emph{domain} and \emph{codomain} respectively, i.e. $dom(f) = A$ and $codom(f)= B$.
+\item A family of \emph{composition} mappings $\circ^\cat{C} = ( \circ^\cat{C}_{A,B,C}: (B,C) \times \cat{C}(A,B) \to \cat{C}(A,C))_{A,B,C \in Ob_\cat{C}}$ indexed by triples of objects $A,B,C \in Ob_\cat{C}$.
+\item A family of \emph{identity} morphisms $id^\cat{C} = (id^\cat{C}_A \in \homset{\cat{C}}{A}{A})_{A \in Ob_\cat{C}}$ indexed by objects $A \in Ob_\cat{C}$.
+\end{itemize}
+such that the following laws hold:
+\begin{equation}
+\tag{Neutrality Laws}
+\label{eq:neutrality}
+f \circ id_A = f = id_A \circ f \hspace{1cm} (A,B \in Obj_\cat{C}, f \in \cat{C}(A,B)) 
+\end{equation}
+\begin{equation}
+\tag{Associativity Law} 
+\label{eq:associativity}
+(h \circ g) \circ f = h \circ (g \circ f)  \hspace{1cm} (A,B,C,D \in Obj_\cat{C}, f \in \cat{C}(A,B), g \in \cat{C}(B,C), h \in \cat{C}(C,D)) 
+\end{equation}
+A category is called,
+\begin{description}[leftmargin=\parindent,labelindent=\parindent,itemsep=2pt,parsep=2pt]
+\item[discrete] iff the only morphisms are the identities.
+\item[codiscrete] iff the hom-set for every pair of objects contains exactly one morphism.
+\item[small] iff the classes of objects and morphisms are sets.
+\item[locally small] iff every hom-set is a set.
+\item[skeletal] iff the only isomorphisms are the identities. % TODO may the latter must distinguish between strongly and weakly skeletal?!
+\item[grupoid] iff every morphism is an isomorphism.
+\item[preorder] iff every hom-set for every pair of objects contains \emph{at most} one morphism.
+\item[balanced] iff morphisms that are both mono and epic are isomorphisms.
+\item[complete] iff it has all limits.
+\item[cocomplete] iff it has all colimits.
+\end{description}
+}
+
+\mkConvention{Typographical conventions}{conv:1}{
+In the following, when the respective category $\cat{C}$ is clear from the context we omit superscripts on $id$ and $\circ$.
+Furthermore, when domain and codomains of the morphisms in a composition are clear from the context we omit the respective subscripts.
+The class of all objects in a category $\cat{C}$ is commonly denoted $\catObjects{\cat{C}}$.
+A morphism $f \in \homset{\cat{C}}{A}{B}$ is denoted $\arrow{A}{f}{B}$, $\inlinearrow{A}{f}{B}$ or $\longinlinearrow{A}{f}{B}$.
+The class of all morphism $Mor_\cat{C}$ is also denoted by $\catArrows{C}$ or $\cat{C}^{2}$.
+Composition is alternatively denoted in sequence of application order, i.e. $f\mathbb{;}g := \compose{f}{g}$.
+}
+
+
+\mkProposition{Identities are unique}{prop:uniqueIdentities}{
+The family of identities $id$ is unique, i.e. if for an object $A$ there are two morphisms $\arrow{A}{id_1,id_2}{A}$ that fulfill the \ref{eq:neutrality}, then $id_1 = id_2$.
+}
+\begin{proof}
+Assume two morphisms $\arrow{A}{id_1}{A}$ and $\arrow{A}{id_2}{A}$ for which the \ref{eq:neutrality} holds. Then 
+\begin{equation}
+	id_1 \overset{(i)}{=} id_2 \circ id_1 \overset{(ii)}{=} id_2
+\end{equation}
+proves the statement, where (i) applies \ref{eq:neutrality} for $id_2$ and (ii) applies \ref{eq:neutrality} for $id_1$.
+\end{proof}
+
+% TODO def DUAL
+
+% TODO SUBCATEGORY
+
+% TODO PRODUCT and COPRODUCT
+
+\subsection{Examples}
+
+\mkFact{Category $\catSET$}{fact:catSET}{
+The classes of all sets and total functions form a category:
+\catExplanation{All sets $A$.}
+{Any map between two sets $\arrow{A}{f}{B}$ defined a morphism in $\catSET$.}
+{Composition of two maps $\arrow{A}{f}{B}$ and $\arrow{B}{g}{C}$ is given by function composition, i.e $g \circ f := x \mapsto g(f(x)) : A \to C$.}
+{For every set $A$ there is an identity mapping $id_A:= x \mapsto x: A \to A$.}
+}
+
+\mkFact{Category $\catINCL$}{fact:catIncl}{
+The classes of all sets and inclusions form a category.
+\catExplanation{All sets $A$}
+{Every subset relation $A \subseteq B$ between sets induces a morphism in $\catINCL$, denoted $\inlineinclusionarrow{A}{}{B}$.}
+{Composition of two inclusion morphisms $\inlineinclusionarrow{A}{}{B}$ and $\inlineinclusionarrow{B}{}{C}$ is given by transitivity of the subset relation $\subseteq$.}
+{Every set $A$ can be considered a subset of itself, hence there is the trivial inclusion morphism $\inlineinclusionarrow{A}{}{A}$.}
+}
+
+\mkFact{Category $\catPAR$}{fact:catPar}{
+The classes of all sets and partial functions form a category.
+\catExplanation{All sets $A$.}
+{Every \emph{partial} function $f$ between sets $A$ and $B$ induces a morphism in $\catPAR$, denoted $\partialinlinearrow{A}{f}{B}$.}
+{Composition of two partial functions  $\partialarrow{A}{f}{B}$ and $\partialarrow{B}{g}{C}$ is defined by: 
+	\[
+	g \circ f = \partialinlinearrow{A}{}{C} : x \mapsto \begin{cases}
+	\mbox{undefined} & f(x) \mbox{ is undefined} \\
+	g(f(x)) & \mbox{otherwise}
+	\end{cases}
+	\]}
+{For every set $A$ there is the identity mapping $\partialarrow{A}{\identity{A}}{A}$, which is actually total.}
+}
+
+\mkFact{Category $\catREL$}{fact:catRel}{
+	The classes of all sets and relations form a category.
+\catExplanation{All sets $A$.}
+{Every relation $\rho \subseteq A \times B$ between sets induces a morphism in $\catREL$, denoted $\relationarrow{A}{\rho}{B}$.}
+{Composition of two relations $\relationarrow{A}{\rho}{B}$ and $\relationarrow{B}{\sigma}{C}$ is given by the relations composite $\sigma \circ \rho := \{ (a,c) \in A \times C \mid \exists b \in B : \rho(a,b) \wedge \sigma(b,c) \}$.}
+{For every set $A$ there is the diagonal relation $\Delta_A := \{ (a,a) \mid a \in A \}$, which neutral w.r.t. relation composition i.e. the identity $\relationarrow{A}{\Delta_A}{A}$.}
+}
+
+\mkFact{Category $\catSEN$}{fact:catSen}{
+The class of all proposition and logical entailment form a category.
+\catExplanation{All logical sentences $P$ built from axioms and logical connectives.}
+{Logical Entailment $P \models Q$ between two propositions $P$ and $Q$ induced a morphism in $\catSEN$.}
+{Composition is given by transitivity of the entailment relation $\models$.}
+{Identities are given by reflexivity of the entailment relation $\models$.}
+}
+
+\mkFact{Category $\catMULT$}{fact:catMult}{
+	The classes of all sets and multimaps form a category.
+\catExplanation{All sets $A$.}
+{Every multimap $\arrow{A}{f}{\powerset{B}}$ induces a morphism in $\catMULT$}
+{Composition of two multimaps $\arrow{A}{f}{\powerset{B}}$ and $\arrow{B}{g}{\powerset{C}}$ is defined by $\compose{f}{g} := \inlinearrow{A}{}{\powerset{C}} : x \mapsto \bigcup\{g(y) \mid y \in f(x)\}$.}
+{Identities are given by $id_A := A \to \wp(A) : a \mapsto \{x\}$.}
+}
+
+
+
+
+% TODO FinSet, and Topological Spaces
+% TODO categories of Hypergraphs, Omega-Algebras, Sigma-Algebras, partial-Sigma Systems
+
+\subsection{Bibliographic Notes}
+
+The first paper by Sanders and MacLane
+Categories for the Working Mathematician
+Later Works by Lawvere
+Typical Textbooks:
+Conceptual Mathematics
+BarrWells
+Categories for Computer Science by R.F.C. Walters
+Categories for the Science by David Spivak
+7Sketches by Fong and Spivak
+Category Theory for Programmers by Bartosz Milewski

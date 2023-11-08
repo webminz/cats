@@ -1,0 +1,43 @@
+% The commenting framework, developed by Zinovy Diskin
+
+% Helper Functions
+\newcommand{\mymargin}[2]{\marginpar{\vspace{#2ex}\flushleft\textit{\footnotesize\textcolor{blue} {#1}}}}    
+\newcommand{\modiffy}[6]{
+	{\small\underline{\sf{#1}}}% the author
+	{{#2}}% the piece to delete
+	{\mymargin{#3}{#6}} % reason why
+	{#4} % separator
+	{{#5}} % the piece to insert
+}%
+
+% Comment Note Foundation
+\newcommand{\mynote}[2]{
+    \fbox{\bfseries\sffamily\scriptsize#1}
+    {\small$\blacktriangleright$
+    \textcolor{blue}{\textsf{\emph{#2}}}
+    $\blacktriangleleft$}}
+
+ \newcommand{\PAST}[1]{\mynote{PS}{#1}}
+
+% Text Modification Comment
+\newcommand{\modifyNew}[4]{%  #1 the piece to delete, #2--insert, #3--margin note
+	\modiffy%
+	{}%#1
+	{\textcolor{red}{\sout{#1}}}%#2
+	{\textcolor{blue}{#3}}%#3 do not forget to place here your initials, say, ZD:
+	%{{#3}}
+	{}%#4
+	{\textcolor{blue}{#2}}%#5
+	{#4} % #6
+}
+
+ \newcommand{\PASTMOD}[4]{\modifyNew{#1}{#2}{PS:~#3}{#4}}
+
+
+% Highlighting
+
+
+\newcommand{\hlightNew}[3]{%
+	\textcolor{blue} {#1} % #1 - the piece to highlight
+	{\mymarginNew{#2}{#3} %#2 - margin note
+}}

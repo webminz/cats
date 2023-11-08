@@ -1,0 +1,645 @@
+Random statements
+(gathered throughout the years)
+
+# Erhan Leblebici
+
+motivation for software engineering/mdse
+Challenge of meeting complex requirements with software: software crisis literature
+Peter Naur and Brian Randell, editors. Software Engineering: Report of a Con
+ference Sponsored by the NATO Science Committee, Garmisch, Germany, 7-11 Oct.
+1968, Brussels, Scientific Affairs Division, NATO. 1969. (Cited on page 1.)
+=> the birth of software engineering 
+essence of software engineering: appropriate abstractions
+
+model: any kind of artefact relating to a software system
+hard to draw a hard-and-fast line between formal and informal artefacts
+
+motivation for multi-modeling
+MDA advocates seperation of concerns
+co-existence leads to consistency management requirement 
+consistency=no contradiction between models exist, agreement on information they represent
+vertically=between different abstraction levels
+horizontally=on the same abstraction level
+MDA exhibits awereness of consistency, should be done by model transformation
+model transformation are usually not one way streets
+
+recent issues on QVT-R semantic issues and implementations
+Bernhard Westfechtel. Case-based exploration of bidirectional transforma
+tions in QVT Relations. Software & Systems Modeling, 2016. doi: 10.1007/
+s10270-016-0527-z. URL https://doi.org/10.1007/s10270-016-0527-z.
+(Cited on page 4.)
+
+QVT-R and TGG difference:
+QVT-R: relations given by logical predicates that have to be fulfilled (relation based)
+TGG: building a class of consistent models by rules (grammar based)
+PL based: more fined control but less abstraction
+
+Process
+Meta-Tool-Developer uses BX methods to develop meta tool
+Consistency Tool Developer uses meta tool to develop consistency tool
+Model owner uses consistency tool to check and restore consistency
+
+# Arend Rensink
+
+Attributes in Graph Transformation are akward:
+Rendsink paper
+
+# Unknown author
+
+Some constraints may require: application conditions
+or multi-amalgamation (execution of additional rules when some rules are executed -> like foreach loops)
+
+# Unknown author
+
+added elements in a delta lead to new rule applications
+deleted elements in a delta lead to invalidated rule applications
+
+
+# Florian Mantz
+
+model migration: adapt a model after metamodel has changed
+co-evolution of structures has been investigated in 
+grammars
+Ralf Lämmel. Grammar Adaptation. In José Nuno Oliveira and
+Pamela Zave, editors, Proceedings of FME 2001: Formal Methods
+for Increasing Software Productivity: 1st International Symposium
+of Formal Methods Europe, volume 2021 of Lecture Notes in Computer
+Science, pages 550–570. Springer, 2001. ISBN 3-540-41791-5.
+DOI 10.1007/3-540-45251-6_32.
+Databases
+John F. Roddick. Schema Evolution in Database Systems - An Annotated
+Bibliography. SIGMOD Record, 21(4):35–40, 1992.
+
+database schema evolution vs. model co-evolution
+technological differenec: database content do not fit into memory, downtimes not feasible
+different depending artifacts: editors, code generators vs. queries
+only one database instance
+models may have more complex strucutre
+coupling in datbases is tighter
+metamodels have different types of constraints
+
+approaches (according to Mantz):
+manual specifcation
+operator based
+metamodel matching
+usually not formally founded except for Löwe and Königs categorical approach
+
+# Ullmann
+
+Why Study Automata
+- Basis of abstract computing devices is based on automata
+- Design of logical circuits
+- Lexical Analysis
+- Scanning large bodies of text
+- Software for verify systems with large number of states
+
+# Unnkown
+
+Really Simple Delta Lens Example
+Pairs of Numbers ---(sum)----> Numbers
+Theoreticains think about correctness (and completeness)
+Practicioners are about performance
+Economics are about costs
+
+
+# Jim Davies:
+cultural relativism -> social sciences to blame
+short attention span
+Windrush scandal -> rewatch movie Brazil
+trusted platforms alone are not enough
+smart contract is formal methods
+
+# Phil Wadler
+smart contract: code on the blockchain
+DAO reentrance bug
+proof of stake vs. proof of work (bad)
+banking runs functional programming languages
+
+# Benjamin Pierce
+3 aspects of "functional programming"
+- if a method as no side effects then it is only relevant hoe inputs are mapped to outputs
+Thus, a program is a mathematical function, i.e. it admits correctness proofs
+
+- functions are first class values, i.e. they can be arguments or results
+=> Powerful programming idioms
+
+- algebraic data types and pattern matching => convenient manipulation of rich data structures
+polymorphic type systems for abstraction and reuse
+
+
+# Me
+
+type disciplin leads to metamodeling
+model transformation means to put everything together (modulo sameness) and applying transformation there
+
+# B. Jacobs
+
+Type Thoery: Logic about Sorts
+
+- Simple Type Theory
+some base types, more types are constructed via type constructors: product, sum, exponent
+types are like sets, the elements of these sets are terms
+
+- Dependent Type Theory
+here types can contain terms!
+Motivation are Matrices(m x n)
+can also be thought of as indexed sets
+
+- Polymorphic Type Theory
+here we can have variables ranging over types
+types indexed by the universe of all types
+
+i.e. distinguishing factor is indexing! none=simple, by terms variables=dependent, by type variables=polymorphic
+
+Typing is Fibration!
+
+context (type theory) = premises (logic) = index
+basic logic/type theory operations are adjoints
+(existential/sum) left adjoint to weakening left adjoint to (universal/sum)
+
+Our well known pullback functor (from a slice category) is also called substitution functor
+Special cases are weaking (w.r.t. a projection in the base category)
+and contraction (w.r.t. a diagonal in the base category)
+
+pointwise or split indexing = indexed semantics (more natural)
+display indexing = fibred semantics (more general, i.e. arbitrary categories because we only need morphisms)
+
+
+
+# Janis Voigtlander
+approaches to BX
+1. tracing
+2. complements
+3. additional third components
+
+lenses come from record (product!) manipulation
+
+solved in (programming) bx
+- work on pl semantics
+- combinator languges with nice type systems
+- program transformation with constant complement
+- query languages with automated tracing
+- grammar based approaches
+
+open problems
+- make it attractive for practice
+- how to deal with ambiguity
+
+
+= Richard Paige
+model is some sort of structured description (processable)
+metamodel is a model of the abstract syntax and static semantics
+
+SE scenarios for BX
+roundtrip engineering
+multiple stakeholders
+impact analysis
+synchronizing (documents and code)
+
+
+# Me (christmas holiday)
+
+Software Engineering strives to make software development more efficient and reliable by applying engineering discipline
+(disambiguation with software craftsmanship)
+Engineering uses 
+- technical drawings (mechanical: dimensions, components, forces; software: information, entities, functionality)
+- that have meaning? (mechanical: differential equations, software: logic?)
+- use assembly (divide and conquer) and standardized components
+- strive to automate parts of the process (milling=code generation)
+
+artifacts in software development have to conform to a format that is associated with a platform
+a platform can provide
+- a visual or textual editor
+- translation capabilities
+- interpretation capabilities (computation)
+The physical represenation of the format (binary, textual, xml,) can be neglected because the meaning of elements (that the platform gives to them) is important
+Thus only conceptual models are important
+How to define formats?
+-Grammars
+-Metamodels (semi-formal and nowadays formal)
+-- indexed
+-- fibred (somewhat equivalent)
+
+Approaches on co-evolution problems
+- universal solutions: controlled delete, free creation of new (chosen?) elements
+- random selection (search based)
+- user selection
+- user strategy 
+
+atomic change operations?
+add/delete of objects, links, attributes => usually not fully automatable (which can be simulated by merge/split and error classifier)
+retype
+merge
+split
+move (which can be simulated by split and then merge)
+
+
+categorization
+
+
+# Khelladi et al. Survey on Co-Evolution
+
+Complex vs. Atomic Changes
+Complex changes can guide the co-evolution better than solely atomic changes (see move vs. add/delete)
+=> Need for change collection
+offline = state based comparison
+trace based (without hooking inside the editor) = chronological order of atomic changes
+operator based (have to hook into the editor) = chronological oder of complex changes
+=> If we we are not operator based change identification is needed
+
+
+change classification vs. degree of automation
+traditionally: non-breaking (no-action needed), breaking but resolvable (fully automatable), breaking and not resolvable (manual intervention needed)
+
+
+# Bernstein
+
+Metadata Problems
+information system challanges: design, integration & maintenance of complex application artifacts>
+programs, databases, websites, worfklows, scripts, user interfaces, formatted messages
+we have formal descriptions of them:  databases schemas, XML schemas, diagrams etc.
+All in all we need mappings:
+- class definition and relational schemas for ORM code
+- XML schemas for message translation
+- data sources and mediated schema for heterogenous data integration
+- database schema versions for migration
+- ER and SQL schema in database design/implementation
+- makefiles
+etc.
+
+model management operations
+syntactical components: models and mappings
+models: set of objects with identity, attributes, is-a and has-a relationships + metalevel, and some form of builtin constraints
+mappings: are morphism spans
+
+Operations
+Match: Take to models and create a mapping
+Composes: Compose two mappings
+Diff: Take a Model and a Mapping and get the part of A that is not mapped
+ModelGen: Take a model and a Mapping and create a new model from that
+Merge: Take two models and a mapping between them and create a new model that represents the union (global view) of them.
+morp
+
+
+
+# R. Paige
+
+software systems 
+- run on a machine
+- are complicated (consist of interacting components)
+- are complex (behave in a way that is not always predictable)
+- are difficult to develop
+
+advantages of following a rigorous process (=engineering)
+- repeatable: other can follow our work, less effort building sth. similiar in the future
+- review: easier to validate results of each stage
+- scale: decompose a big problem into smaller ones
+- automation: opportunities to automates parts of the process
+- training: easy to train others
+
+classification of model transformation
+-unidirectional (i would say: translation) purely declarative, operational, hybrid. In his experience using only declarative is hard to use (thus hybrid is the way to go)
+-in place (i would say modification)
+-model-to-text (code generation)
+-bidirectional
+
+model transformation have side effects
+als purely declarative: then the side effect is generating traces...
+
+a QVT Relations program contains
+a set of rules which are relations. Relations are made up of patterns, and are
+applied to a set of typed model parameters.
+
+when clause (the conditions under which the relation must hold)
+where clause (the condition that must be satisfied by all model elements participating in the relation)
+
+
+# Erik Meijer
+A domain specific language is just an API
+You can just use List always instead of Maybes, parser example
+The advantage of monads is that you can use the do notation
+
+
+# Perdita Stevens
+Software is the part of the system you cannot break with a hammer
+Building good software is time-consuming, difficult and expensive
+Advances in Hardware made apparent that software is the weak spot in the process => 30 year crisis
+Abstract Thinking is key for good software developers
+
+Everybody should know programming!
+=> The telephone crisis
+Software Engineering is hard because of uncertainty
+
+A model is an abstract, usually graphical representation of some aspect of a system
+MDD: seperation of concerns
+Agile: keep pace with the real world
+Hard parts of SE: Requirements and Maintenance
+
+
+# Herbert Kuchen 
+Wirtschaftinformatik: Algorithmische Komplexität ist überschaubar!
+
+# Jens Knoop
+USP
+Usability: Language Level
+Semantics: Compiler level
+Performance: Machine Level
+
+
+aok ausprobieren obs klappt
+dsb definition satz beweis
+
+formal methods, empirical, social
+
+57 detuscher verkehrsgerichtstag: arbeitskreis autonomes Fahren: Programmer ist verantwortlich -> Motivation für reliable Information Systems
+
+
+# Me
+
+
+Formal is fun because we can constrain to open/generic interfaces in programming (overfitting)!
+We do this via predicates and operations; Is there a difference? Actually no!
+We need sentences: build over predicates!
+
+
+Typical Terms in CS papers
+
+Validtity
+Feasibility
+Scalability
+Completeness
+Satisfiability
+Termination
+Confluence
+Correctness
+
+
+ 
+# Reiko Heckel
+
+Get your levels right
+self-referentiality problem
+halting, Russels paradox, UML metalevels etc
+
+
+# Bartosz Milweski
+
+CT and programm is about composability (divide and conquer)
+imperative vs. declarative (how to do it vs. what to do, X/Y problem)
+imperative: actions ordered in time
+depends on compiler how declarative is executed
+Can a declarative solution always translated into a computer program
+
+imperative thinking in physics
+look at local state and how it can change (change is differential equation)
+differential equation -> iterate a difference equation
+thus we can model the global universe by cellular automata
+
+declarative thinking in physics:
+global look at initial and final state and calculate the trajectory in between
+trjectory is driven by principle of least distance/action
+can even be generalized to quantum mechanics
+
+CT encourages declarative thinking
+Encourages probelm specification before coding
+
+In CT everything relates to everything and can be viewed from different angles
+Set theory is the assembly language of mathematics
+
+Types (programming) identifiable with sets (maths) slightly problematic:
+in prgramming we compute, which takes time and may not finish
+
+# Me
+
+Sets and mappings as the workhorse in mathamtics
+A finite version of it is used in FP
+Algebra means internalization of funtions into the objects (then called operations)
+
+
+# Manuel Wimmer
+metamodeling  as the central technique to define modelling languages and, thus, the structure of their corresponding models
+metamodels specify the so-called abstract syntax of modelling languages (i.e., the language concepts and their relationships) 
+that is the centre of the modelling language definition and all other concerns such as the concrete syntax (i.e., the graphical model notation) are based on it
+There exist standardized metamodeling languages such as the Meta Object Facility (MOF)
+Practically, metamodels are instantiated to produce models, which are in essence object graphs, i.e., they consist of objects (instances of classes) representing the modeling elements, object slots for storing values (instances of attributes), and links between the objects (instances of references), which have to conform to the UML class diagram describing the metamodel. Therefore, models are often represented in terms of UML object diagrams if their concrete syntax is neglected. This is especially true when models are automatically processed by the computer
+MOF is based on a core subset of UML class diagrams and includes classes, attributes, and references.
+
+
+# Me
+
+some motivational sentences for MDE
+Models leverage communication with domain experts, foster understandability among software engineers and enable automation via code generation etc.
+Model Driven Software Engineering (MDSE) is a paradigm and research discipline that promotes models as the primary artifacts in software development.
+
+
+# Pawel Sobocinski
+Fibonacci discovered the superiority of the Arabic positional number system in 12th century, book: Liber Abaci
+It was adopted 400 year later, towards the end of the 16th century
+
+
+There has been intense political pressure on the academy to stop working on hard and useless things over the last 30 years or so. The result is a new generation of academics who do easy and useful things, things that impact the economy in the 5-10 year scale, and which bring in research funding. This is by design, because research funding is closely tied to academic career progression. Unfortunately, it’s not very hard to disguise easy and useless things as easy and useful. This has resulted in a totally out-of-control epidemic of easy and useless research. A symptom of this disease is the ever expanding use of increasingly ridiculous buzzwords. Easy and useless never leads to hard and useful. I’d much rather the government invest my tax money in the hard and useless.
+
+
+# R.F.C. Walters
+Category Theory is Algebra for funtions, whenever you calculate by composing functions, there is some category behind it
+A category is a mixture of graphical information and algebraic operations.
+Computer Science is a mixture of graphs and algebra
+
+
+# Me
+
+Often, we are interested in a certain subset of all possible models, e.g. all software implementations that fulfil a certain requirement.
+The concept of a logical theory provides a syntactical representation for a specific set of models.
+
+
+
+# Whittle et al. (2013) : 
+•“The majority of our interviewees were very successful with MDE but all of them either built their own modeling tools, made heavy adapta- tions of off-the-shelf tools, or spent a lot of time finding ways to work around tools.”
+•“Tools are often very powerful, but it is too difficult for users to access that power; or, in some cases, they do not really need that power and require something much simpler.”
+•“We do not have a fine-grained way of knowing which MDE tools are appropriate for which jobs.”
+•“There is also a clear gap in the way that vendors market their tools and their real capabilities.”
+•“And suddenly the tool does not do something expected and it is a nightmare for them [this is an immediate quote from an inter- view].”
+•“More focus on processes, less on tools. [....] Very little research has been carried out on how best to tailor: what kinds of tailoring go on, how tools can or cannot support this, and how to develop simpler tools that can fit into existing processes with minimal tailoring.”
+
+# Unknown
+
+The transformations are categorised into
+- generalisation, e.g., object to class diagram; 
+- structuralisation, e.g., state machine to class diagram; 
+- translation, e.g., sequence into collaboration diagram; 
+- abstraction (=refinement?!), e.g., class diagram to class diagram. (The last class of transformations, abstraction, is employed to relate diagrams and different development and refinement stages)
+
+
+# Chicetti et. al. (2019)
+Despite these new approaches, the problem of multi-ary consistency relations remains unresolved as it poses severe difficulties on both the theoretical and practical side.
+
+# Me
+Modeling is interestingly more in use where software meets embedded systems and mechatronics (e.g. automotive), i.e. real engineering, less in "pure" software development
+
+
+# Carlo Ghezzis Book (1991)
+
+Qualities in SE
+
+correctness
+reliability
+robutstness
+performance
+user friendly
+maintainability
+reusability
+portability
+understandability
+productivity
+timeliness
+visibility
+
+Principles in SE
+
+rigor and formality
+separation of concerns
+modularity
+abstraction
+change anticipation
+generality
+incrementality
+
+operational specification
+
+data flow: specifying functionality
+finite state machines: control flow
+petri-nets: asynchronous systems
+
+descriptive spec
+
+ER-diagrams
+logical specs
+Algebraic specs
+
+Types of Verification
+
+testing
+analysis
+symbolic execution
+debugging
+
+Generic Tools in SE
+
+editors
+linkers
+interpreters
+code-generators
+debuggers
+static analyzers
+ui-mgmt tools
+configuration-mgmt
+(?) databases
+(?) operating systems
+
+
+# de Lara et. a.l
+Classes in metamodels are used as templates for object creation, as they dictate the structural properties and well-formedness constraints that the objects of a class must comply with.
+
+
+# D. Kolovos
+
+Model is overloaded
+generally in science = abstraction of a system
+What is a system then ?!
+system already exists => descriptive model (very common in natural science), purpose: understanding, prediction
+system is yet to be built => prescriptive model (what SE are interested in), purpose: cheaper and easier than to built the whole thing
+
+kinds of prescriptive models:
+sketches, no/loose semantics, incomplete, facilitate discussion
+blueprints, flexible semantics, specification, require humans
+programs, precise semantics, fully autonomous
+MDE is mostly about the latter
+
+What MDE can do,
+remove boilerplate
+reduce repitious tasks (chance of errors!)
+reasoning about system properties 
+
+DSML are nice when you have to produce multiple output formats
+Conference Management -> Poster, Flyers, Website
+Projekt Proposals -> Report, Excel Sheets, Gant Diagrams
+
+Graphical Models: 
+easier to consume (because visual system is highly parallel)
+harder to produce (at least on a computer)
+
+Textual models:
+harder to consume (because of the sequential auditory system)
+easy to produce
+
+diagrams do not scale well
+
+semiotic clarity: one to one correspondence between symbol and concept
+perceptual descriminability: different symbols easy to distinguish (position,brightness,size,shape,color,orientation)
+semantic transparancy: meaning of a symbols can be inferred from appearence (intuitiveness)
+complexity management: 7 +/- 2 elements (use modularisation)
+dual coding: use graphics and text together
+graphical economy: limit number of different symbols
+
+
+Model Transformation languages
+imperative: fully expressive, less conscise, e.g. EOL, QVTo, Kermeta
+declarative: less expressive, very concise, abstract and possible to reason, e.g. Henshin, QVTr
+hybrid: somewhere in between, e.g. ETL, ATL
+
+
+
+# B. Jacobs
+
+
+A program is an element in an inductively defined set of terms
+F(X) -> X (constructor)
+F captures the signature of operations over X
+Operational rules for the behavior are described by a coalgebra
+X -> G(X) (destructor: setters and getters)
+G captures the kind of possible behaviour
+
+DataType in a functional language is something algebraic
+Object Oriented class is something coalgebraic
+
+A programming language comprises an algebra (program) and a coalgebra (operational semantics)
+
+
+# T. Parr
+
+Why spend 5 doing  something manually when you can spend 5 years automating it
+
+
+
+# Jim Davies
+
+In fact, the more that science lifts its ambitions towards transdisciplinarity, towards internationalism, towards
+grand challenges, the more it has to accommodate divergent and sometimes inconsistent perspectives—the more it
+has to abandon the simplicity of modernism, and embrace postmodernity. Simplifying to the extreme, postmodernity
+has been defined as “incredulity towards metanarratives” [7], the relinquishing of the expectation of a single universal
+framework for discussion. In particular, as the scope of our information systems extends beyond a single program
+run by a single person on a single machine to encompass broader collaborations across space, time, and discipline,
+we have to accept that “no requirements can be both complete and consistent: you have to pick one” [8]. This is
+the battle cry of the postmodern programming movement, which “rejects overarching grand narratives. As a result, it
+favours descriptive reasoning rather than prescriptive. Rather than working top down from a theory towards practice,
+postmodern programming theories are built up, following practice. Moreover, theory follows practice on a case-bycase
+basis” [8].
+
+
+snomed ct: intrument of aggression  (funny), unable to use microwave oven (men cements microwqve to head)
+Funny ICD code, sucked into jet engine, 
+
+health care a lot of free text
+#datasaveslives
+
+data type definition:
+enumeration meaning of items
+units of the numeric
+attributes: unique identitfier, description test
+
+ontotlogies are great, but you cannot describe reality with it
+We need to model context (CT, formal methods)
+
+refinement relation between concepts
+
+
